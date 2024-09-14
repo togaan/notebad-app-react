@@ -61,7 +61,7 @@ function Task(props) {
 
             //Clear the form
             setformTaskeData({ taskValue: '' });
-            window.location.reload()
+           
         } else {
             // Add the new object to the existing array
             const updatedTaskArray = [...taskArray, newTask]
@@ -71,7 +71,7 @@ function Task(props) {
 
             // Update the state
             setTaskArray(updatedTaskArray);  
-            window.location.reload()
+           
         }
     }
 
@@ -273,8 +273,8 @@ function Task(props) {
             </div>
             {alertConfirmDeleteTask && <div
                 style={{opacity}}
-                className=" game container text-center d-flex justify-content-center position-absolute top-0 mt-5">
-                { <div className={`alert w-50 alert-warning `} role="alert">
+                className=" game container text-center d-flex justify-content-center position-absolute top-50 mt-5">
+                { <div className={`alert  alert-warning `} role="alert">
                     <p className="alert-heading fw-bold fs-6 fs-sm-2">Are youe sure you want to delete {confirmDeleteAllTasks ? 'all tasks' : "this task"}?</p>
                     <hr></hr>
                     <div className="d-flex justify-content-between">
@@ -289,7 +289,7 @@ function Task(props) {
                             //Clear the form
                             setformTaskeData({ taskValue: '' });
                             setEditTaskIndex(null); 
-                            window.location.reload()
+                            setAlertConfirmDeleteTask(false)
 
                             // delete all tasks
                             if (confirmDeleteAllTasks) {
@@ -297,7 +297,8 @@ function Task(props) {
                                 deleteAllTasks.length = 0
                                 setTaskArray(deleteAllTasks)
                                 localStorage.setItem('task', JSON.stringify(deleteAllTasks));
-                                window.location.reload()
+                                setAlertConfirmDeleteTask(false)
+                                
                             }
                         }}>Delet</button>
                         <button type="button" className="btn btn-info fs-6" onClick={() => {setAlertConfirmDeleteTask(false)}}>Cancel</button>

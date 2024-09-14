@@ -37,17 +37,20 @@ function Note(props) {
     const [bgColor, setBgColor] = React.useState(colors[0]);
 
     React.useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentSlide(prevCount => (prevCount + 1) % (props.noteArray.length ) ); // Increment the count and reset to 0 after reaching 5
-            setBgColor(prevColor => {
-                const currentIndex = colors.indexOf(prevColor);
-                return colors[(currentIndex + 1) % colors.length];
-              });
+        if (props.noteArray.length !== 0) {
+       
+            const interval = setInterval(() => {
+                setCurrentSlide(prevCount => (prevCount + 1) % (props.noteArray.length)); // Increment the count and reset to 0 after reaching 5
+                setBgColor(prevColor => {
+                    const currentIndex = colors.indexOf(prevColor);
+                    return colors[(currentIndex + 1) % colors.length];
+                });
            
-        }, 3000); // Adjust the time for the interval in milliseconds (1000ms = 1s)
+            }, 3000); // Adjust the time for the interval in milliseconds (1000ms = 1s)
         
-        // Cleanup function to clear the interval on component unmount
-        return () => clearInterval(interval);
+            // Cleanup function to clear the interval on component unmount
+            return () => clearInterval(interval);
+        }
       }, [colors, props.noteArray.length]);
     
      
@@ -69,17 +72,12 @@ function Note(props) {
     }
   }, [props.alertConfirmDeleteNote])
     
-    // delate display data in the slide 
-    const [data, setData] = React.useState(false);
-    if (props.noteArray.length !== 0) {
-        setTimeout(() => {
-            setData(true)
-            }, 1000); 
-    }
+    
     
     
     return (
-        <div className={`note col-12  col-md-12 ${!props.sidebar ? "col-lg-6" : "col-lg-5"}  p-3 pt-0  mt-0 rounded-3 position-relative ${!props.mode && "dark-mode"} ${!props.sidebar && "ms-3 "} `}>
+        <div className={`note col-12  col-md-12 ${!props.sidebar ? "col-lg-6" : "col-lg-5"}  
+        p-3 pt-0  mt-0 rounded-3 position-relative ${!props.mode && "dark-mode"}  `}>
             
             <form onSubmit={props.handleSubmit} className=" form p-4 pt-2 pb-3 rounded-3">
                 <div className="mb-3">
@@ -115,7 +113,7 @@ function Note(props) {
                 <p className={` time text-start  ${!props.mode ? " text-white" : "text-black"}`}>{notetime}</p>
             </form>
 
-            {data ?<div className="slide p-3 pt-0 position-relative mt-0 rounded-3">
+            {props.noteArray.length !== 0 &&<div className="slide p-3 pt-0 position-relative mt-0 rounded-3">
                 <FontAwesomeIcon icon={faCircleLeft}
                     className={`btn left-slide fs-3 position-absolute start-0 ms-0  ms-md-1 ms-lg-4 ${currentSlide === 0 && "pe-none"}`}
                     onClick={() => {setCurrentSlide(prev => prev - 1)}}
@@ -172,12 +170,12 @@ function Note(props) {
                     >{props.noteArray.length}</button> 
                     )}
                 </div>
-            </div> : console.log(null)}
+            </div>}
 
             {props.alertConfirmDeleteNote && <div
                 style={{opacity}}
                 className=" game container text-center d-flex justify-content-center position-absolute top-0 mt-5">
-                { <div className={`alert w-50 alert-warning `} role="alert">
+                { <div className={`alert  alert-warning `} role="alert">
                     <p className="alert-heading fw-bold fs-6 fs-sm-2">Are youe sure you want to delete this note?</p>
                     <hr></hr>
                     <div className="d-flex justify-content-between">

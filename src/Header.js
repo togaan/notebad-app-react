@@ -12,13 +12,13 @@ function Header(props) {
                 <form className="form d-flex w-25 ms-5 position-absolute end-0  rounded-3" role="search" onSubmit={props.handleSearchSubmit}>
                     <button className="btn" type="submit"><FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon fs-5 position-absolute" /></button>
                     <input 
-                        className="form-control me-2  search text-white ps-5"
-                        type="search" placeholder="Search by title"
-                        
+                        className="form-control me-2  search text-white ps-5 "
+                        type="search"
+                        placeholder="Search by title"
                         value={props.search}
                         onChange={props.handleSerachChange}
                     ></input>
-                    
+                    {props.noResult && <p className="text-danger position-absolute top-25 mt-2 start-50 ">No results</p>}
 
                     
                    

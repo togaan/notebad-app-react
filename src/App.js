@@ -97,7 +97,6 @@ function App() {
         setEditIndex(null);
       }, 2000)
       
-      window.location.reload()
       //Clear the form
       setformNoteData({  noteTitle: '', noteText: ''});
     } else {
@@ -109,7 +108,7 @@ function App() {
 
       // Update the state
       setNoteArray(updatedNoteArray);
-      window.location.reload()
+     
     } 
   };
   
@@ -123,19 +122,21 @@ function App() {
   
   // create a state for search value
   const [search, setSearch] = React.useState('')
+  const [noResult, setNoResult] = React.useState(false)
   
   // function to handle search change
   function handleSerachChange(event) {
     setSearch(event.target.value)
+    setNoResult(false)
     
   }
   
   // function to handle search submission
   function handleSearchSubmit(event) {
     event.preventDefault();
-    const existsNote = noteArray.some(item => item.noteTitle === search.toLowerCase())
+    const existsNote = noteArray.some(item => item.noteTitle.toLowerCase().trim().replace(/\s+/g, '') === search.toLowerCase().trim().replace(/\s+/g, ''))
     if (existsNote) {
-      const searchedNoteIndex = noteArray.findIndex(item => item.noteTitle === search.toLowerCase())
+      const searchedNoteIndex = noteArray.findIndex(item => item.noteTitle.toLowerCase().trim().replace(/\s+/g, '') === search.toLowerCase().trim().replace(/\s+/g, ''))
       setEditIndex(searchedNoteIndex);
       setformNoteData({
         ...formNoteData,
@@ -143,7 +144,7 @@ function App() {
         noteTitle : noteArray[searchedNoteIndex].noteTitle
       })  
     } else if (!existsNote || search === '') {
-      alert('No results')
+      setNoResult(true)
     } 
   }
    
@@ -187,6 +188,7 @@ function App() {
         handleSerachChange={handleSerachChange}
         handleSearchSubmit={handleSearchSubmit}
         searchValue={search}
+        noResult={noResult}
       />
         
 
@@ -254,9 +256,8 @@ function App() {
                 setformNoteData({ noteTitle: '', noteText: '' });
                 // Clear the form and reset editIndex
                 setEditIndex(null);
-                //window.location.reload()
                 setAlertConfirmDeleteNote(false)
-                window.location.reload()
+                //window.location.reload()
               }}
             />
             <Task sidebar={sidebar} mode={mode} editTaskIndexFromSidebar={editTaskIndexFromSidebar} /> 
