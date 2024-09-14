@@ -18,9 +18,11 @@ function Sidebar(props) {
   const showTasks = () => {
     setDisplayAllTasksInSidebar (prev => !prev)
   }
-    
+   
+  const t = props.t
     return (
-        <div className={`sidebar position-relative col-2  shadow-sm text-start pt-3    ${props.sidebar ? "d-block" : "d-none"} ${!props.mode && "dark-mode"}`}>
+      <div className={`sidebar position-relative col-2  shadow-sm text-start pt-3   ${props.direction === 'rtl' ? 'rtl text-end' : 'ltr'} 
+        ${props.sidebar ? "d-block" : "d-none"} ${!props.mode && "dark-mode"}`}>
             <FontAwesomeIcon icon={faCircleXmark}
               className='exit-sidebar btn position-absolute end-0 me-1 top-0  fs-4'
               onClick={props.reSetsidebar}
@@ -31,7 +33,7 @@ function Sidebar(props) {
                 onClick={props.showNotes}>
                 <FontAwesomeIcon icon={props.desplayAllNoteInSidebar ? faCaretDown : faCaretRight} className='me-2' />
                 <FontAwesomeIcon icon={faFolder} className='me-2'/>
-                All Notes
+                {t("All Notes")}
               </h4>
                 <ul className="note-list">
                     {props.noteArray.map((item, index) => (
@@ -47,21 +49,23 @@ function Sidebar(props) {
             </div>
         
             <div>
-              <h4 className={`fs-6 btn text-start ps-2 pe-1 pt-1 pb-1 mb-1 mt-3 ${desplayAllTasksInSidebar && "active"}`}
+            <h4 className={`fs-6 btn text-start ps-2 pe-1 pt-1 pb-1 mb-1 mt-3 ${desplayAllTasksInSidebar && "active"} 
+              ${props.direction === 'rtl' ? 'rtl text-end' : 'ltr'}`}
                 onClick={showTasks}>
-                <FontAwesomeIcon icon={desplayAllTasksInSidebar ? faCaretDown : faCaretRight} className='me-2' />
+                <FontAwesomeIcon icon={desplayAllTasksInSidebar ? faCaretDown : faCaretRight} className='me-2 ms-1' />
                 <FontAwesomeIcon icon={faFolder} className='me-2'/>
-                All Tasks
+                {t("All Tasks")}
               </h4>
                 <ul className="note-list">
                     {props.taskArray.map((item, index) => (
                        <li
                         className={`btn text-start ps-2 pe-1 pt-0 pb-0 
                                   ${props.editIndex === index && "active"}  
-                                  ${desplayAllTasksInSidebar ? "d-block" : "d-none"} `}
+                                  ${desplayAllTasksInSidebar ? "d-block" : "d-none"} 
+                                  ${props.direction === 'rtl' ? 'rtl text-end' : 'ltr'}`}
                        key={index}
                        onClick={() => { props.displayTaskToUpdate(index) }}
-                   >   <FontAwesomeIcon icon={faClipboard} className=" li-icon fs-6 me-2"/>
+                   >   <FontAwesomeIcon icon={faClipboard} className=" li-icon fs-6 me-2 ms-1"/>
                        {item.taskValue.split(' ').slice(0, 4).join(' ')} ...
                    </li>
                   ))}

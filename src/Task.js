@@ -171,7 +171,7 @@ function Task(props) {
         return `${years}-${months}-${days} ${hoursOn12}:${minutes}:${seconds} ${ampm}`
     }
 
-   //updatedTasks[index].isCompleted = !updatedTasks[index].isCompleted;
+    const t = props.t
 
     
     return (
@@ -191,13 +191,13 @@ function Task(props) {
                             onClick={handleDeleteTask}
                         />}
                     </div>
-                    <label htmlFor="exampleInputEmail1" className="form-label note-label fs-3 fw-bold float-end pe-3">Tasks</label>
+                    <label htmlFor="exampleInputEmail1" className="form-label note-label fs-3 fw-bold float-end pe-3">{t("Tasks")}</label>
                     <textarea
                         id="exampleInputEmail1"
                         type="text"
                         value={formTaskeData.taskValue || ''}
                         className="form-control   bg-gradien shadow-sm fs-6" 
-                        placeholder="Write your task"
+                        placeholder={t("Write your task")}
                         onChange={handleTaskChange}
                     ></textarea>
                 </div> 
@@ -237,17 +237,18 @@ function Task(props) {
                                 }} />
                             
                         </div>
-                        <div className="task-date position-absolute  top-100 start-0 ms-4 d-flex justify-content-between flex-wrap">
-                            <p className="m-0"> Started in: {taskDateStart(item.taskTime)}</p>
-                            {item.isCompleted && <p className="finshedTaskDate m-0">Finshed in: {taskArray[index].finshed}</p>}
+                        <div className={`task-date position-absolute  top-100 start-0 ms-4 d-flex justify-content-between flex-wrap ${props.direction === 'rtl' ?'rtl' : 'ltr'}`}>
+                            <p className="m-0"> {t("Started in:")} {taskDateStart(item.taskTime)}</p>
+                            {item.isCompleted && <p className="finshedTaskDate m-0">{t("Finshed in:")} {taskArray[index].finshed}</p>}
                         </div>
                     </div>
                 ))}
             </div>
             <div className="task-info d-float">
-                <p className=" d-flex align-items-center float-start mt-2 ms-5"><span className="  me-1 fs-6 text-success">{allCompletedTasks}</span>
-                    {allCompletedTasks <= 1 ? 'Task' : 'Tasks'} completed from
-                    <span className=" ms-1 fs-6 ">{taskArray.length}</span>
+                <p className={`d-flex align-items-center float-start mt-2 ms-5 ${props.direction === 'rtl' ?'rtl' : 'ltr'}`}>
+                    <span className="  me-1 ms-1  fs-6 text-success">{allCompletedTasks}</span>
+                    {allCompletedTasks <= 1 ? t('Task') : t('more-tasks')} {t("completed from")}
+                    <span className=" ms-1 me-1 fs-6 ">{taskArray.length}</span>
                 </p>
 
                 <div className="info-icons float-end me-5">

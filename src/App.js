@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import './App.css';
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -6,7 +7,28 @@ import Note from './Note';
 import Task from './Task';
 
 function App() {
-           
+  // switch language
+  const { t, i18n } = useTranslation();
+  const [direction, setDirection] = React.useState('')
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem('language', lng); // Save the selected language to local storage
+    window.location.reload()
+  };
+  
+   // Check for language in local storage on component mount
+   useEffect(() => {
+    const userLanguage = localStorage.getItem('language'); // Retrieve the language from local storage
+    if (userLanguage) {
+      i18n.changeLanguage(userLanguage);
+      setDirection(userLanguage === 'ar' ? 'rtl' : 'ltr')  // Set body direction based on stored language
+    }
+  }, [i18n]);
+  
+    
+  
+  
   const [mode, setMode] = React.useState(() => {
     // get mode from localStorge
     const restoredMode = localStorage.getItem('mode')
@@ -189,6 +211,9 @@ function App() {
         handleSearchSubmit={handleSearchSubmit}
         searchValue={search}
         noResult={noResult}
+        changeLanguage={changeLanguage}
+        t={t}
+        direction={direction}
       />
         
 
@@ -197,6 +222,8 @@ function App() {
           <div className='row'>
             
             <Sidebar
+              t={t}
+              direction={direction}
               displayNoteToUpdate={(index) => {
                 if (noteArray.length > 0) {
                   setEditIndex(index);
@@ -221,6 +248,8 @@ function App() {
                   
             />  
             <Note
+              t={t}
+              direction={direction}
               handleNoteTextChange={handleNoteTextChange}
               handleNoteTitleChange={handleNoteTitleChange}
               text={formNoteData.noteText}
@@ -260,7 +289,7 @@ function App() {
                 //window.location.reload()
               }}
             />
-            <Task sidebar={sidebar} mode={mode} editTaskIndexFromSidebar={editTaskIndexFromSidebar} /> 
+            <Task sidebar={sidebar} mode={mode} editTaskIndexFromSidebar={editTaskIndexFromSidebar} t={t} direction={direction} /> 
           </div>
         </div>
       </div>

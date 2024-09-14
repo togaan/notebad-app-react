@@ -72,7 +72,7 @@ function Note(props) {
     }
   }, [props.alertConfirmDeleteNote])
     
-    
+  const t = props.t
     
     
     return (
@@ -92,11 +92,11 @@ function Note(props) {
                             onClick={props.handleDeleteNote}
                         />}
                     </div>
-                    <label htmlFor="exampleInputEmail1" className="form-label note-label fs-3 fw-bold float-end pe-3">Notes</label>
+                    <label htmlFor="exampleInputEmail1" className="form-label note-label fs-3 fw-bold float-end pe-3">{t('Notes')}</label>
                     <input
                         className="form-control me-2 mb-3 title text-black outline-info"
                         type="text"
-                        placeholder="Title"
+                        placeholder={t("Title")}
                         value={props.title || ''}
                         onChange={props.handleNoteTitleChange}
                     ></input>
@@ -105,7 +105,7 @@ function Note(props) {
                         type="text"
                         value={props.text || ''}
                         className="form-control note-input " 
-                        placeholder="Write your note"
+                        placeholder={t("Write your note")}
                         onChange={props.handleNoteTextChange}
                     ></textarea>
                     
@@ -131,11 +131,11 @@ function Note(props) {
                             className="btn float-start edit-slide fs-4 p-0"
                             onClick={() => props.displayNoteFromSlide(currentSlide)}
                         />
-                        <h3 className="text-black user-select-none fs-6  float-end">
-                            Title : {props.noteArray[currentSlide].noteTitle}
+                        <h3 className={`text-black user-select-none fs-6  float-end ${props.direction === 'rtl' ? 'rtl text-end' : 'ltr'}`}>
+                            {t('Title :')} {props.noteArray[currentSlide].noteTitle}
                         </h3>
                     </div>
-                    <pre className="w-100 h-75 text-start p-2"
+                    <pre className={`w-100 h-75 text-start p-2 ${props.direction === 'rtl' ? 'rtl text-end' : 'ltr'}`}
                         style={{ opacity: 1 }}
                     ><code>{props.noteArray[currentSlide].noteText}</code></pre>
                 </div>

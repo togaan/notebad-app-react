@@ -5,6 +5,7 @@
   padding-bottom: 200px!important;
   
 }
+
 .App.dark-mode {
   text-align: center;
   background-color: var( --dark-mode-background);
@@ -60,15 +61,9 @@
   
  }
 
- .mode p:nth-of-type(1){
-  color: var(--black-color);
-  margin-top: 13px;
-  
-}
- .mode p:nth-of-type(2){
- color: rgba(213, 212, 216, 1); 
- margin-top: 13px;
-}
+ .mode {
+  margin-top: -15px!important;
+ }
 
 .nav.dark-mode {
   background-color: var(--dark-mode-background)!important;
@@ -81,6 +76,9 @@
   border-color: #3d444db3!important;
 }
 
+.language button:nth-of-type(1){
+  margin-top: -10px!important;
+}
 
 @media (max-width:573px) {
   .nav .form {
@@ -106,11 +104,11 @@
     top: 50px!important;
     left: 20px!important;
   }
-  .nav .mode {
+  /* .nav .mode {
     position: absolute!important;
     top: 10px!important;
     right: 10px!important;
-  }
+  } */
   .nav h1, nav .show-sidebar {
     position: absolute!important;
     top: 0px!important;
@@ -148,8 +146,17 @@
 .nav.dark-mode :where(h1 )  {
   color: white!important;
 }
-.nav.dark-mode :where(h1, .search-icon )  {
+.nav.dark-mode :where(h1, .search-icon, .settings-icon )  {
   color: rgba(97, 218, 251, 1);
+}
+.settings-icon:hover   {
+  color: rgba(97, 218, 251, 1)!important;
+}
+.settings-items {
+  background-color: #727a86ea;
+}
+.nav.dark-mode .settings-items {
+  background-color: #19283fe7;
 }
 .nav h1 {
   font-family: var(--font-family-primary);
@@ -160,12 +167,7 @@
   color: #9198a1!important;
 }
 
-.nav.dark-mode .mode p:nth-of-type(1){
-  color: rgba(213, 212, 216, 1);
-}
-.nav.dark-mode .mode p:nth-of-type(2){
-  color: white;
-}
+
 
 .nav.dark-mode .modeIcon .circle{
   background-color: var(--dark-mode-background);
@@ -363,7 +365,9 @@
   color: rgba(97, 218, 251, 1)!important;
 }
 
-
+.go-end {
+  
+}
 
 .edit-slide:hover  {
   color: rgba(97, 218, 251, 1)!important;
@@ -458,7 +462,7 @@
 
 .task.dark-mode .task-item{
   border: 1px solid #3d444db3!important;
-  background-color: #5e79a023!important;
+  background-color: var(--dark-background-items)!important;
   color: rgb(214, 214, 214);
   
 }
@@ -531,6 +535,12 @@
 
 .task-info {
   font-family:Arial, Helvetica, sans-serif!important;
+}
+.rtl {
+  direction: rtl!important;
+}
+.ltr {
+  direction: ltr!important;
 }
 .task.dark-mode .task-info p{
   color: rgb(167, 167, 167);
