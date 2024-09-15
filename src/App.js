@@ -7,6 +7,32 @@ import Note from './Note';
 import Task from './Task';
 
 function App() {
+
+  useEffect(() => {
+    // Function to store scroll position before unload
+    const handleBeforeUnload = () => {
+      sessionStorage.setItem('scrollPosition', window.scrollY);
+    };
+
+    // Function to restore scroll position after reload
+    const restoreScrollPosition = () => {
+      const scrollPosition = sessionStorage.getItem('scrollPosition');
+      if (scrollPosition) {
+        window.scrollTo(0, parseInt(scrollPosition, 10));
+      }
+      // Clear the stored scroll position after restoring it
+      sessionStorage.removeItem('scrollPosition');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    restoreScrollPosition();
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   // switch language
   const { t, i18n } = useTranslation();
   const [direction, setDirection] = React.useState('')
@@ -120,7 +146,8 @@ function App() {
       }, 2000)
       
       //Clear the form
-      setformNoteData({  noteTitle: '', noteText: ''});
+      setformNoteData({ noteTitle: '', noteText: '' });
+      window.location.reload()
     } else {
       // Add the new object to the existing array
       const updatedNoteArray = [...noteArray, newNote]
@@ -130,7 +157,7 @@ function App() {
 
       // Update the state
       setNoteArray(updatedNoteArray);
-     
+      window.location.reload()
     } 
   };
   
@@ -286,7 +313,7 @@ function App() {
                 // Clear the form and reset editIndex
                 setEditIndex(null);
                 setAlertConfirmDeleteNote(false)
-                //window.location.reload()
+                window.location.reload()
               }}
             />
             <Task sidebar={sidebar} mode={mode} editTaskIndexFromSidebar={editTaskIndexFromSidebar} t={t} direction={direction} /> 

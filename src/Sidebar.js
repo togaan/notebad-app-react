@@ -27,19 +27,20 @@ function Sidebar(props) {
               className='exit-sidebar btn position-absolute end-0 me-1 top-0  fs-4'
               onClick={props.reSetsidebar}
             />
-          <div className="container p-2 ps-3 d-flex justify-content-between flex-wrap">
+          <div className="container  ps-0 pt-3 pe-0 d-flex justify-content-between flex-wrap">
             <div>
-              <h4 className={`fs-6 btn text-start ps-2 pe-1 pt-1 pb-1 mb-1 mt-3 ${props.desplayAllNoteInSidebar && "active"}  ${props.direction === 'rtl' ? 'arabic ps-5 pe-0' : ''}`}
+            <h4 className={`fs-6 btn text-start ps-2 pe-1 pt-1 pb-1 mb-1 mt-3 ${props.desplayAllNoteInSidebar && "active"}  
+              ${props.direction === 'rtl' ? 'arabic ps-5  pe-0' : ''}`}
                 onClick={props.showNotes}>
                 <FontAwesomeIcon icon={props.desplayAllNoteInSidebar ? faCaretDown : faCaretRight} className='me-2' />
                 <FontAwesomeIcon icon={faFolder} className='me-2 ms-2'/>
                 {t("All Notes")}
               </h4>
-                <ul className="note-list">
+                <ul className="note-list d-flex align-items-center flex-column justify-content-start">
                     {props.noteArray.map((item, index) => (
                        <li
                         className={`btn text-start ps-2 pe-1 pt-0 pb-0 ${props.editIndex === index && "active"}  
-                       ${props.desplayAllNoteInSidebar ? "d-block" : "d-none"} ${props.direction === 'rtl' ? 'arabic ps-5 pe-0' : ''}`}
+                       ${props.desplayAllNoteInSidebar ? "d-block" : "d-none"} ${props.direction === 'rtl' ? 'arabic  text-end' : ''}`}
                        key={index}
                        onClick={() => { props.displayNoteToUpdate(index) }}
                     ><FontAwesomeIcon icon={faClipboard} className=" li-icon fs-6 me-2 ms-2"/>
@@ -57,13 +58,13 @@ function Sidebar(props) {
                 <FontAwesomeIcon icon={faFolder} className='me-2 ms-2'/>
                 {t("All Tasks")}
               </h4>
-                <ul className="note-list">
+                <ul className="note-list d-flex align-items-center flex-column justify-content-start">
                     {props.taskArray.map((item, index) => (
                        <li
                         className={`btn text-start ps-2 pe-1 pt-0 pb-0 
                                   ${props.editIndex === index && "active"}  
                                   ${desplayAllTasksInSidebar ? "d-block" : "d-none"} 
-                                  ${props.direction === 'rtl' ? 'rtl arabic ps-5 pe-0' : 'ltr'}`}
+                                  ${props.direction === 'rtl' ? 'rtl arabic  text-end' : 'ltr'}`}
                        key={index}
                        onClick={() => { props.displayTaskToUpdate(index) }}
                    >   <FontAwesomeIcon icon={faClipboard} className=" li-icon fs-6 me-2 ms-2"/>

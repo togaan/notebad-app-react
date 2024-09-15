@@ -218,27 +218,28 @@ button
   max-height: 923px!important;
   background-color: rgb(255, 255, 255);
   overflow-y: scroll!important;
+
  
 
 }
 .sidebar h4{
   font-family: var(--font-family-secondary);
   font-weight: 700;
-  width: 150px!important;
-  margin-left: -15px!important;
+  
 }
 .sidebar h4.arabic{
-  font-weight: 700;
-  width: fit-content!important;
+ 
 }
 .sidebar ul li{
   font-family: var(--font-family-secondary);
   margin-left: -15px!important;
-  min-width: 110px!important;
-  max-width: 250px;
+  min-width: 150px!important;
+ 
 }
 .sidebar ul li.arabic{
-  width: fit-content!important;
+  width: fit-content;
+  min-width: 150px!important;
+  
 }
 @media (max-width:991px) {
   .sidebar {

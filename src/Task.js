@@ -61,6 +61,7 @@ function Task(props) {
 
             //Clear the form
             setformTaskeData({ taskValue: '' });
+            window.location.reload()
            
         } else {
             // Add the new object to the existing array
@@ -71,7 +72,7 @@ function Task(props) {
 
             // Update the state
             setTaskArray(updatedTaskArray);  
-           
+            window.location.reload()
         }
     }
 
