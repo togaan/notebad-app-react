@@ -220,7 +220,8 @@ function Task(props) {
                                         finshed: taskDateFinsh(Date.now())
                                     };     
                                     setTaskArray(updatedTasks);
-                                    localStorage.setItem('task', JSON.stringify(updatedTasks))                                           
+                                    localStorage.setItem('task', JSON.stringify(updatedTasks))  
+                                    window.location.reload()
                                  }}
                             />
 
