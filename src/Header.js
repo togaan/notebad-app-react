@@ -29,7 +29,7 @@ function Header(props) {
                     
                    
                 </form>
-                <div className="settings position-absolute end-0 me-2 mt-1 top-0  z-3 ">
+                <div className="settings position-absolute end-0 me-2 mt-1 top-0  z-3  ">
                     <FontAwesomeIcon icon={faGear} className={`fs-4 settings-icon btn mt-1 ${settings && 'go-right'}`} onClick={handleSettings} />
                     {settings && <div className="settings-items shadow-sm p-4 rounded-3 position-relative">
                         <FontAwesomeIcon icon={faCircleXmark}
