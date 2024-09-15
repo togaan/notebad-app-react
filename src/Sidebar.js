@@ -36,7 +36,7 @@ function Sidebar(props) {
                 <FontAwesomeIcon icon={faFolder} className='me-2 ms-2'/>
                 {t("All Notes")}
               </h4>
-                <ul className="note-list d-flex align-items-center flex-column justify-content-start">
+                <ul className="note-list d-flex  flex-column justify-content-start">
                     {props.noteArray.map((item, index) => (
                        <li
                         className={`btn text-start ps-2 pe-1 pt-0 pb-0 ${props.editIndex === index && "active"}  
@@ -58,7 +58,7 @@ function Sidebar(props) {
                 <FontAwesomeIcon icon={faFolder} className='me-2 ms-2'/>
                 {t("All Tasks")}
               </h4>
-                <ul className="note-list d-flex align-items-center flex-column justify-content-start">
+                <ul className="note-list d-flex  flex-column justify-content-start">
                     {props.taskArray.map((item, index) => (
                        <li
                         className={`btn text-start ps-2 pe-1 pt-0 pb-0 
