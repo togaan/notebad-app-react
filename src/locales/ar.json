@@ -4,6 +4,7 @@
     "English": "الإنجليزية",
     "Notebad": "المفكرة",
     "Search by title": "ابحث بواسطة العنوان",
+    "Note Title": " عنوان الملاحظة",
     "No results": "لا توجد نتائج",
     "Light": "مظهر فاتح",
     "Dark": "الوضع الداكن",
@@ -21,5 +22,12 @@
     "Finshed in:": "تاريخ انجاز المهمة",
     "Task": "مهمة",
     "more-tasks": "مهام",
-    "completed from": " تم انجازها من اصل "
+    "completed from": " تم انجازها من اصل ",
+    "Are youe sure you want to delete this note?": "هل انت متأكد من انك تريد حذف هذه الملاحظة؟",
+    "Are youe sure you want to delete": "هل انت متأكد من انك تريد حذف ",
+    "Cancel": "الغاء",
+    "Delete": "حذف",
+    "all tasks?": "جميع المهام؟",
+    "this task?": "هذه المهمة؟"
+
   }

@@ -20,20 +20,23 @@
   --font-family-primary: "Oleo Script", system-ui;
   --font-family-secondary: "Inika", serif;;
 }
-
+button
 /* start navbar */
 .nav {
   background-color: #708090!important;
 }
 .modeIcon {
-  width: 50px;
-  height: 25px;
+  width: 45px;
+  height: 20px;
   background-color: rgba(97, 218, 251, 1);
   padding:  2px;
 }
+.modeIcon.arabic {
+ margin-left: 90px!important;
+}
 .modeIcon .circle {
-  width: 21px;
-  height: 21px;
+  width: 16px;
+  height: 16px;
   background-color: var(--white-background);
   transform-origin: right;
   transition: transform .5s;
@@ -79,7 +82,12 @@
 .language button:nth-of-type(1){
   margin-top: -10px!important;
 }
-
+.settings-items {
+  margin-top: 15px!important;
+}
+.go-right {
+  margin-right: -200px!important;
+}
 @media (max-width:573px) {
   .nav .form {
     right: 70px!important;
@@ -104,11 +112,9 @@
     top: 50px!important;
     left: 20px!important;
   }
-  /* .nav .mode {
-    position: absolute!important;
-    top: 10px!important;
-    right: 10px!important;
-  } */
+  .settings-items {
+    margin-top: 55px!important;
+  }
   .nav h1, nav .show-sidebar {
     position: absolute!important;
     top: 0px!important;
@@ -153,10 +159,26 @@
   color: rgba(97, 218, 251, 1)!important;
 }
 .settings-items {
-  background-color: #727a86ea;
+  background-color: #ffffff;
+  color: black!important;
+}
+.settings-items button{
+  color: black!important;
+}
+.nav.dark-mode .settings-items button{
+  color: white!important;
+}
+.settings-items button:hover, .settings-items button.active {
+  background-color: #dddddd;
+}
+
+.nav.dark-mode .settings-items button:hover , .nav.dark-mode .settings-items button.active{
+  background-color: #3b3b3b!important;
+  border: none;
 }
 .nav.dark-mode .settings-items {
   background-color: #19283fe7;
+  color: white!important;
 }
 .nav h1 {
   font-family: var(--font-family-primary);
@@ -167,8 +189,13 @@
   color: #9198a1!important;
 }
 
+.mode p {
+  font-size: 14px!important;
+}
 
-
+.the-mode {
+  font-size: 18px!important;
+}
 .nav.dark-mode .modeIcon .circle{
   background-color: var(--dark-mode-background);
   transform: translateX(24px);
@@ -200,11 +227,18 @@
   width: 150px!important;
   margin-left: -15px!important;
 }
+.sidebar h4.arabic{
+  font-weight: 700;
+  width: fit-content!important;
+}
 .sidebar ul li{
   font-family: var(--font-family-secondary);
   margin-left: -15px!important;
   min-width: 110px!important;
   max-width: 250px;
+}
+.sidebar ul li.arabic{
+  width: fit-content!important;
 }
 @media (max-width:991px) {
   .sidebar {
@@ -509,11 +543,17 @@
   overflow-wrap: break-word;
   white-space: pre-wrap;
   min-height: 80px!important;
-  font-size: 18px!important;
+  font-size: 16px!important;
  
 }
+.task-date p {
+  font-size: 14px;
+}
+.task-date p:nth-of-type(2) {
+  color: rgba(108, 204, 108, 0.877)!important;
+}
 .task-text.completed {
-  color: rgba(110, 206, 110, 0.801)!important;
+  color: rgba(108, 204, 108, 0.877)!important;
   text-decoration: line-through!important;
   
 }
@@ -585,8 +625,5 @@
   color: rgb(8, 8, 8)!important;
 }
 .task.dark-mode .task-date {
-  color: rgba(202, 202, 202, 0.603)!important;
-}
-.finshedTaskDate {
-  color: #25d366;
+  color: rgba(252, 252, 252, 0.829)!important;
 }

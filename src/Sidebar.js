@@ -29,19 +29,20 @@ function Sidebar(props) {
             />
           <div className="container p-2 ps-3 d-flex justify-content-between flex-wrap">
             <div>
-              <h4 className={`fs-6 btn text-start ps-2 pe-1 pt-1 pb-1 mb-1 mt-3 ${props.desplayAllNoteInSidebar && "active"} `}
+              <h4 className={`fs-6 btn text-start ps-2 pe-1 pt-1 pb-1 mb-1 mt-3 ${props.desplayAllNoteInSidebar && "active"}  ${props.direction === 'rtl' ? 'arabic ps-5 pe-0' : ''}`}
                 onClick={props.showNotes}>
                 <FontAwesomeIcon icon={props.desplayAllNoteInSidebar ? faCaretDown : faCaretRight} className='me-2' />
-                <FontAwesomeIcon icon={faFolder} className='me-2'/>
+                <FontAwesomeIcon icon={faFolder} className='me-2 ms-2'/>
                 {t("All Notes")}
               </h4>
                 <ul className="note-list">
                     {props.noteArray.map((item, index) => (
                        <li
-                       className={`btn text-start ps-2 pe-1 pt-0 pb-0 ${props.editIndex === index && "active" }  ${props.desplayAllNoteInSidebar ? "d-block" : "d-none"} `}
+                        className={`btn text-start ps-2 pe-1 pt-0 pb-0 ${props.editIndex === index && "active"}  
+                       ${props.desplayAllNoteInSidebar ? "d-block" : "d-none"} ${props.direction === 'rtl' ? 'arabic ps-5 pe-0' : ''}`}
                        key={index}
                        onClick={() => { props.displayNoteToUpdate(index) }}
-                    ><FontAwesomeIcon icon={faClipboard} className=" li-icon fs-6 me-2"/>
+                    ><FontAwesomeIcon icon={faClipboard} className=" li-icon fs-6 me-2 ms-2"/>
                        {item.noteTitle}
                    </li>
                   ))}
@@ -50,10 +51,10 @@ function Sidebar(props) {
         
             <div>
             <h4 className={`fs-6 btn text-start ps-2 pe-1 pt-1 pb-1 mb-1 mt-3 ${desplayAllTasksInSidebar && "active"} 
-              ${props.direction === 'rtl' ? 'rtl text-end' : 'ltr'}`}
+              ${props.direction === 'rtl' ? 'arabic ps-5 pe-0' : ''}`}
                 onClick={showTasks}>
                 <FontAwesomeIcon icon={desplayAllTasksInSidebar ? faCaretDown : faCaretRight} className='me-2 ms-1' />
-                <FontAwesomeIcon icon={faFolder} className='me-2'/>
+                <FontAwesomeIcon icon={faFolder} className='me-2 ms-2'/>
                 {t("All Tasks")}
               </h4>
                 <ul className="note-list">
@@ -62,10 +63,10 @@ function Sidebar(props) {
                         className={`btn text-start ps-2 pe-1 pt-0 pb-0 
                                   ${props.editIndex === index && "active"}  
                                   ${desplayAllTasksInSidebar ? "d-block" : "d-none"} 
-                                  ${props.direction === 'rtl' ? 'rtl text-end' : 'ltr'}`}
+                                  ${props.direction === 'rtl' ? 'rtl arabic ps-5 pe-0' : 'ltr'}`}
                        key={index}
                        onClick={() => { props.displayTaskToUpdate(index) }}
-                   >   <FontAwesomeIcon icon={faClipboard} className=" li-icon fs-6 me-2 ms-1"/>
+                   >   <FontAwesomeIcon icon={faClipboard} className=" li-icon fs-6 me-2 ms-2"/>
                        {item.taskValue.split(' ').slice(0, 4).join(' ')} ...
                    </li>
                   ))}

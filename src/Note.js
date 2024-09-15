@@ -94,9 +94,9 @@ function Note(props) {
                     </div>
                     <label htmlFor="exampleInputEmail1" className="form-label note-label fs-3 fw-bold float-end pe-3">{t('Notes')}</label>
                     <input
-                        className="form-control me-2 mb-3 title text-black outline-info"
+                        className={`form-control me-2 mb-3 title text-black outline-info ${props.direction === 'rtl' ?'rtl text-end pe-3 ps-1' : 'ltr'}`}
                         type="text"
-                        placeholder={t("Title")}
+                        placeholder={t("Note Title")}
                         value={props.title || ''}
                         onChange={props.handleNoteTitleChange}
                     ></input>
@@ -104,7 +104,7 @@ function Note(props) {
                         id="exampleInputEmail1"
                         type="text"
                         value={props.text || ''}
-                        className="form-control note-input " 
+                        className={`form-control note-input ${props.direction === 'rtl' ?'rtl text-end pe-3 ps-1' : 'ltr'}`} 
                         placeholder={t("Write your note")}
                         onChange={props.handleNoteTextChange}
                     ></textarea>
@@ -176,11 +176,11 @@ function Note(props) {
                 style={{opacity}}
                 className=" game container text-center d-flex justify-content-center position-absolute top-0 mt-5">
                 { <div className={`alert  alert-warning `} role="alert">
-                    <p className="alert-heading fw-bold fs-6 fs-sm-2">Are youe sure you want to delete this note?</p>
+                    <p className={`alert-heading fw-bold fs-6 fs-sm-2 ${props.direction === 'rtl' ?'rtl text-end pe-3 ps-1' : 'ltr'}`}>{t("Are youe sure you want to delete this note?")}</p>
                     <hr></hr>
                     <div className="d-flex justify-content-between">
-                        <button type="button" className="btn btn-info fs-6" onClick={props.confirmDelete}>Delet</button>
-                        <button type="button" className="btn btn-info fs-6" onClick={props.noDelete}>Cancel</button>
+                        <button type="button" className="btn btn-danger fs-6" onClick={props.confirmDelete}>{t("Delete")}</button>
+                        <button type="button" className="btn btn-info fs-6" onClick={props.noDelete}>{t("Cancel")}</button>
                     </div>
                 </div>}
             </div>}

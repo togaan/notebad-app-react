@@ -196,7 +196,7 @@ function Task(props) {
                         id="exampleInputEmail1"
                         type="text"
                         value={formTaskeData.taskValue || ''}
-                        className="form-control   bg-gradien shadow-sm fs-6" 
+                        className={`form-control   bg-gradien shadow-sm fs-6 ${props.direction === 'rtl' ?'rtl text-end pe-3 ps-1' : 'ltr'}`} 
                         placeholder={t("Write your task")}
                         onChange={handleTaskChange}
                     ></textarea>
@@ -207,7 +207,7 @@ function Task(props) {
             <div className="all-tasks  rounded-3 pt-3   d-flex align-items-center flex-column gap-5 justify-content-start">
                 {taskArray.map((item, index) => (
                     <div className={`task-item p-2 position-relative rounded-3 `} key={index} style={{  backgroundColor: `` }}>
-                        <pre className={`task-text  text-start opacity-100 ps-3 ${item.isCompleted && "completed"}`} > 
+                        <pre className={`task-text  text-start opacity-100 ps-3 ${item.isCompleted && "completed"} ${props.direction === 'rtl' ?'rtl text-end pe-3 ps-1' : 'ltr'}`} > 
                             <code>{item.taskValue}</code></pre>
                         <div className="task-icons  d-flex align-items-center flex-column gap-0 justify-content-center 
                                         position-absolute end-0 top-0  me-1 ">
@@ -237,21 +237,21 @@ function Task(props) {
                                 }} />
                             
                         </div>
-                        <div className={`task-date position-absolute  top-100 start-0 ms-4 d-flex justify-content-between flex-wrap ${props.direction === 'rtl' ?'rtl' : 'ltr'}`}>
+                        <div className={`task-date position-absolute  top-100 start-0 ms-4 d-flex justify-content-between flex-wrap ${props.direction === 'rtl' ?'rtl me-5 pe-3' : 'ltr'}`}>
                             <p className="m-0"> {t("Started in:")} {taskDateStart(item.taskTime)}</p>
                             {item.isCompleted && <p className="finshedTaskDate m-0">{t("Finshed in:")} {taskArray[index].finshed}</p>}
                         </div>
                     </div>
                 ))}
             </div>
-            <div className="task-info d-float">
-                <p className={`d-flex align-items-center float-start mt-2 ms-5 ${props.direction === 'rtl' ?'rtl' : 'ltr'}`}>
+            <div className={`task-info d-float `}>
+                <p className={`d-flex align-items-center float-start mt-2 me-1 m-sm-5 ${props.direction === 'rtl' ?'rtl' : 'ltr'}`}>
                     <span className="  me-1 ms-1  fs-6 text-success">{allCompletedTasks}</span>
                     {allCompletedTasks <= 1 ? t('Task') : t('more-tasks')} {t("completed from")}
                     <span className=" ms-1 me-1 fs-6 ">{taskArray.length}</span>
                 </p>
 
-                <div className="info-icons float-end me-5">
+                <div className="info-icons float-end me-1 m-sm-5">
                     <FontAwesomeIcon icon={faSquareCheck}
                         className={`check-icon fs-4 btn ${allCompletedTasks === taskArray.length && "green"}`}
                         onClick={() => {
@@ -276,7 +276,9 @@ function Task(props) {
                 style={{opacity}}
                 className=" game container text-center d-flex justify-content-center position-absolute top-50 mt-5">
                 { <div className={`alert  alert-warning `} role="alert">
-                    <p className="alert-heading fw-bold fs-6 fs-sm-2">Are youe sure you want to delete {confirmDeleteAllTasks ? 'all tasks' : "this task"}?</p>
+                    <p className={`alert-heading fw-bold fs-6 fs-sm-2 
+                        ${props.direction === 'rtl' ? 'rtl text-end pe-3 ps-1' : 'ltr'}`}>
+                        {t("Are youe sure you want to delete")} {confirmDeleteAllTasks ? t('all tasks?') : t("this task?") }</p>
                     <hr></hr>
                     <div className="d-flex justify-content-between">
                         <button type="button" className="btn btn-info fs-6" onClick={() => {
@@ -301,8 +303,8 @@ function Task(props) {
                                 setAlertConfirmDeleteTask(false)
                                 
                             }
-                        }}>Delet</button>
-                        <button type="button" className="btn btn-info fs-6" onClick={() => {setAlertConfirmDeleteTask(false)}}>Cancel</button>
+                        }}>{t("Delete")}</button>
+                        <button type="button" className="btn btn-info fs-6" onClick={() => {setAlertConfirmDeleteTask(false)}}>{t("Cancel")}</button>
                     </div>
                 </div>}
             </div>}
