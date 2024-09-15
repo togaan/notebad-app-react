@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/notebad-app-react/static/css/main.cfcbcf14.css",
-    "main.js": "/notebad-app-react/static/js/main.a5ff603f.js",
+    "main.js": "/notebad-app-react/static/js/main.8c68d78f.js",
     "static/js/453.dc628c51.chunk.js": "/notebad-app-react/static/js/453.dc628c51.chunk.js",
     "index.html": "/notebad-app-react/index.html",
     "main.cfcbcf14.css.map": "/notebad-app-react/static/css/main.cfcbcf14.css.map",
-    "main.a5ff603f.js.map": "/notebad-app-react/static/js/main.a5ff603f.js.map",
+    "main.8c68d78f.js.map": "/notebad-app-react/static/js/main.8c68d78f.js.map",
     "453.dc628c51.chunk.js.map": "/notebad-app-react/static/js/453.dc628c51.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cfcbcf14.css",
-    "static/js/main.a5ff603f.js"
+    "static/js/main.8c68d78f.js"
   ]
 }
