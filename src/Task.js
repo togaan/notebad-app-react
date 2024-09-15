@@ -260,6 +260,7 @@ function Task(props) {
                             setTaskArray(completeAllTasks);
                             localStorage.setItem('task', JSON.stringify(completeAllTasks));
                             setAllObjectsState(prev => !prev)
+                            window.location.reload()
                         }}
                     />
 
@@ -293,7 +294,7 @@ function Task(props) {
                             setformTaskeData({ taskValue: '' });
                             setEditTaskIndex(null); 
                             setAlertConfirmDeleteTask(false)
-
+                            window.location.reload()
                             // delete all tasks
                             if (confirmDeleteAllTasks) {
                                 const deleteAllTasks = [...taskArray];
@@ -301,7 +302,7 @@ function Task(props) {
                                 setTaskArray(deleteAllTasks)
                                 localStorage.setItem('task', JSON.stringify(deleteAllTasks));
                                 setAlertConfirmDeleteTask(false)
-                                
+                                window.location.reload()
                             }
                         }}>{t("Delete")}</button>
                         <button type="button" className="btn btn-info fs-6" onClick={() => {setAlertConfirmDeleteTask(false)}}>{t("Cancel")}</button>
